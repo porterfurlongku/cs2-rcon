@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 RCON Web Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-2">CS2 RCON Web Interface</h1>
+            <div id="playerCount" class="text-xl text-green-500">
+                Players Online: <span>0</span>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Preset Commands -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-2xl font-bold mb-4">Preset Commands</h2>
+                <div id="presetButtons" class="grid gap-2">
+                    <!-- Preset buttons will be added here -->
+                </div>
+            </div>
+
+            <!-- Custom Commands -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-2xl font-bold mb-4">Custom Command</h2>
+                <div class="flex gap-2">
+                    <input type="text" id="customCommand" 
+                           class="flex-1 bg-gray-700 text-white px-4 py-2 rounded"
+                           placeholder="Enter custom RCON command">
+                    <button onclick="sendCustomCommand()"
+                            class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">
+                        Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- Console Output -->
+            <div class="bg-gray-800 p-6 rounded-lg md:col-span-2">
+                <h2 class="text-2xl font-bold mb-4">Console Output</h2>
+                <div id="consoleOutput" 
+                     class="bg-gray-700 p-4 rounded h-64 overflow-y-auto font-mono text-sm">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 

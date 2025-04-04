@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  cs2-server:
+    build: .
+    ports:
+      - "27015:27015/tcp"
+      - "27015:27015/udp"
+      - "27020:27020/tcp"
+      - "27020:27020/udp"
+    environment:
+      - RCON_PASSWORD=your_rcon_password_here
+      - SERVER_PASSWORD=your_server_password_here
+      - STEAM_ACCOUNT=your_steam_gslt_token_here
+    volumes:
+      - ./cfg:/home/steam/cs2-server/game/csgo/cfg
+    restart: unless-stopped
+
+  rcon-web:
+    build: ./web
+    ports:
+      - "3000:3000"
+    environment:
+      - RCON_HOST=cs2-server
+      - RCON_PORT=27015
+      - RCON_PASSWORD=your_rcon_password_here
+    depends_on:
+      - cs2-server
+    restart: unless-stopped 
