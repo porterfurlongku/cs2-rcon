@@ -39,9 +39,11 @@ USER steam
 
 # Install CS2 server
 RUN /home/steam/steamcmd/steamcmd.sh +force_install_dir /home/steam/cs2-server \
+    +force_install_dir /home/steam/cs2-server \
     +login anonymous \
     +app_update 730 validate \
-    +quit
+    +quit && \
+    /home/steam/cs2-server/game/bin/linuxsteamrt64/cs2 -dedicated
 
 # Copy server configuration
 COPY --chown=steam:steam ./cfg /home/steam/cs2-server/game/csgo/cfg/
